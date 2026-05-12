@@ -5,7 +5,9 @@ from config import DATABASE_PATH
 
 def initialize_database() -> None:
     try:
-        connection = sqlite3.connect(DATABASE_PATH)
+        connection = sqlite3.connect(
+            DATABASE_PATH
+        )
 
         cursor = connection.cursor()
 
@@ -23,13 +25,20 @@ def initialize_database() -> None:
 
     except sqlite3.Error as error:
         raise RuntimeError(
-            f"Error inicializando SQLite: {error}"
+            f"SQLite no pudo iniciar: {error}"
         ) from error
 
 
 def save_plan(title: str) -> None:
+    if not title:
+        raise RuntimeError(
+            "No puedes guardar un plan vacío."
+        )
+
     try:
-        connection = sqlite3.connect(DATABASE_PATH)
+        connection = sqlite3.connect(
+            DATABASE_PATH
+        )
 
         cursor = connection.cursor()
 
@@ -46,5 +55,5 @@ def save_plan(title: str) -> None:
 
     except sqlite3.Error as error:
         raise RuntimeError(
-            f"Error guardando plan: {error}"
+            f"SQLite no pudo guardar el plan: {error}"
         ) from error
