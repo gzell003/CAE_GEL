@@ -24,6 +24,18 @@ BUDGET_OPTIONS = {
     "Sin límite": 999999,
 }
 
+EMPTY_RESULTS_MESSAGE = (
+    "No encontramos planes que encajen con tu mood y presupuesto hoy."
+)
+
+SUCCESS_SAVE_MESSAGE = (
+    "Tu plan quedó guardado para revisarlo después."
+)
+
+SEARCHING_MESSAGE = (
+    "Buscando planes que valgan la salida esta noche..."
+)
+
 EVENT_TAG_PRIORITY = {
     "nuevo": 3,
     "popular": 2,
