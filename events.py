@@ -1,0 +1,38 @@
+EVENTS = [
+    {
+        "id": 1,
+        "title": "Jazz Colonial",
+        "moods": ["Relajada", "Creativa"],
+        "price": 1000,
+        "zone": "Zona Colonial",
+        "parking": "Difícil",
+        "tags": ["nuevo"],
+    },
+    {
+        "id": 2,
+        "title": "Taller Cerámica",
+        "moods": ["Creativa", "Curiosa"],
+        "price": 1500,
+        "zone": "Naco",
+        "parking": "Disponible",
+        "tags": ["oculto"],
+    },
+    {
+        "id": 3,
+        "title": "Ruta Café Specialty",
+        "moods": ["Relajada", "Curiosa"],
+        "price": 500,
+        "zone": "Piantini",
+        "parking": "Disponible",
+        "tags": ["popular"],
+    },
+    {
+        "id": 4,
+        "title": "Mercado Diseñadores",
+        "moods": ["Social", "Creativa"],
+        "price": 500,
+        "zone": "Gazcue",
+        "parking": "Limitado",
+        "tags": ["nuevo"],
+    },
+]
