@@ -9,61 +9,89 @@ from data.models import save_plan
 
 
 def render_results(events: list) -> None:
+    """
+    Renderiza recomendaciones visuales.
+
+    Inputs:
+        events: lista de eventos.
+
+    Outputs:
+        None.
+    """
+
     if not events:
         st.warning(EMPTY_RESULTS_MESSAGE)
         return
 
-    limited_events = events[:MAX_RESULTS]
-
     st.subheader("Planes recomendados para hoy")
 
+    limited_events = events[:MAX_RESULTS]
+
     for event in limited_events:
-        tags = ", ".join(event["tags"])
 
-        st.markdown(
-            f"""
-            <div class="event-card">
-                <div class="event-title">
-                    {event["title"]}
-                </div>
+        with st.container(border=True):
 
-                <div class="event-meta">
-                    📍 {event["zone"]}
-                </div>
+            col1, col2 = st.columns([4, 1])
 
-                <div class="event-meta">
-                    💸 RD${event["price"]}
-                </div>
-
-                <div class="event-meta">
-                    🚗 Parqueo: {event["parking"]}
-                </div>
-
-                <div class="event-meta">
-                    🎭 Ambiente: {tags}
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-        if st.button(
-            f'Guardar "{event["title"]}"',
-            key=f'save_{event["id"]}',
-        ):
-            try:
-                with st.spinner(
-                    "Guardando tu plan..."
-                ):
-                    save_plan(event["title"])
-
-                st.success(
-                    SUCCESS_SAVE_MESSAGE
+            with col1:
+                st.markdown(
+                    f"### {event['title']}"
                 )
 
-                st.toast(
-                    f'{event["title"]} guardado.'
+                st.caption(
+                    f"📍 {event['zone']}"
                 )
 
-            except RuntimeError as error:
-                st.error(str(error))
+            with col2:
+                st.metric(
+                    "Precio",
+                    f"RD${event['price']}"
+                )
+
+            st.write(
+                f"🚗 Parqueo: {event['parking']}"
+            )
+
+            moods = " · ".join(
+                event["moods"]
+            )
+
+            st.write(
+                f"🎭 Mood ideal: {moods}"
+            )
+
+            tags = " · ".join(
+                event["tags"]
+            )
+
+            st.write(
+                f"✨ Tags: {tags}"
+            )
+
+            save_button = st.button(
+                f'Guardar "{event["title"]}"',
+                key=f'save_{event["id"]}',
+                use_container_width=True,
+            )
+
+            if save_button:
+                try:
+                    with st.spinner(
+                        "Guardando plan..."
+                    ):
+                        save_plan(
+                            event["title"]
+                        )
+
+                    st.success(
+                        SUCCESS_SAVE_MESSAGE
+                    )
+
+                    st.toast(
+                        f'{event["title"]} guardado'
+                    )
+
+                except RuntimeError as error:
+                    st.error(str(error))
+
+            st.divider()
