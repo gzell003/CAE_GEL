@@ -35,4 +35,22 @@ EVENTS = [
         "parking": "Limitado",
         "tags": ["nuevo"],
     },
+    {
+        "id": 5,
+        "title": "Noche Vinyl Rooftop",
+        "moods": ["Social", "Energética"],
+        "price": 1000,
+        "zone": "Bella Vista",
+        "parking": "Disponible",
+        "tags": ["popular"],
+    },
+    {
+        "id": 6,
+        "title": "Club Lectura Café",
+        "moods": ["Relajada", "Curiosa"],
+        "price": 500,
+        "zone": "Gazcue",
+        "parking": "Limitado",
+        "tags": ["oculto"],
+    },
 ]
